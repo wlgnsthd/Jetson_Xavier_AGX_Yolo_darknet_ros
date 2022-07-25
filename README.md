@@ -33,7 +33,7 @@ catkin_make
 
 source ~/catkin_ws/devel/setup.bash
 gedit ~/.bashrc
-## 수정하기
+## Modify
 # export ROS_MASTER_URI=http://localhost:11311
 # export ROS_HOSTNAME=xxx.xxx.xxx.xxx
 # alias cw='cd ~/catkin_ws'
@@ -47,7 +47,7 @@ roscore
 ```
 sudo apt-get purge libopencv* python-opencv
 sudo find /usr/local/ -name "*opencv*" -exec rm {} \;
-# 안지워진 폴더 삭제
+# Delete folder
 # sudo rm -rf /usr/local/include/opencv
 # sudo rm -rf /usr/local/include/opencv4
 # sudo rm -rf /usr/share/opencv
@@ -77,7 +77,7 @@ mkdir build
 cd build
 ```
 ```
-# Xavier
+# Xavier AGX cmake (option is significant)
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_CUDA=ON -D CUDA_ARCH_BIN="7.2" -D CUDA_ARCH_PTX="" -D WITH_CUBLAS=ON -D ENABLE_FAST_MATH=ON -D CUDA_FAST_MATH=ON -D ENABLE_NEON=ON -D WITH_GSTREAMER=ON -D WITH_LIBV4L=ON -D BUILD_opencv_python2=ON -D BUILD_opencv_python3=ON -D BUILD_TESTS=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_EXAMPLES=OFF -D WITH_QT=ON -D WITH_OPENGL=ON -D CUDA_NVCC_FLAGS="--expt-relaxed-constexpr" -D WITH_TBB=ON ..
 
 ```
@@ -87,22 +87,22 @@ make -j$(nproc)
 ```
 ```
 sudo make install
-# 환경변수등록 
+# Environmental variable 
 sudo sh -c 'echo '/usr/local/lib' > /etc/ld.so.conf.d/opencv.conf'
 sudo ldconfig
 ```
-## Install cv3_bridge 중요
+## Install cv3_bridge ( Important )
 https://github.com/leggedrobotics/darknet_ros/issues/34
 
 ```
-# do not apt install ros-melodic-cv-bridge
+# Dont do apt install ros-melodic-cv-bridge
 cd catkin_ws/src
 git clone https://github.com/superjax/cv3_bridge
 #In src/darknet_ros/darknet_ros/CMakeLists.txt:
 #find the cv_bridge and replace with cv3_bridge
 #find the find_package(OpenCV REQUIRED) and change to find_package(OpenCV 3 REQUIRED)
 #find the target_link_libraries(${PROJECT_NAME} ... and add ${OpenCV_LIBRARIES} to the end of the list
-#package.xml에서 cv_brige를 cv3_bridge로 바꾸기
+#package.xml : cv_brige -> cv3_bridge
 
 ```
 ## Yolo darknet ROS install
@@ -110,21 +110,22 @@ git clone https://github.com/superjax/cv3_bridge
 cd catkin_ws/src
 git clone --recursive https://github.com/Tossy0423/yolov4-for-darknet_ros.git
 cd ../
-# darknet_ros/darknet/Makefile열어서 GPU,CUDNN, OPENCV = 1로, gencode arch=compute_72,code=sm_72\ gencode arch=compute_72,code=[sm_72,compute_72]| 변경
-# darknet_ros/darknet_ros/CMakeList.txt에서도 뒷부분 똑같이 수정
+# Open darknet_ros/darknet/Makefile : GPU,CUDNN, OPENCV = 1, gencode arch=compute_72,code=sm_72\ gencode arch=compute_72,code=[sm_72,compute_72] 
+# Make sure your GPU version checking 
+# darknet_ros/darknet_ros/CMakeList.txt : Do same thing
 catkin_make -DKMAKE_BUILD_TYPE=Release
-# 빌드 완료후
-# usb 카메라 설치
+# Build
+# usb camera pkg
 sudo apt install ros-melodic-uvc-camera 
 
-# darknet_ros/darknet_ros/config/ros.yaml에서 rostopic list에서 image 토픽 확인->/image_raw로 변경
-# darknet_ros/darknet_ros/launch/darknet_ros에서 rostopic list에서 image 토픽 확인->/image_raw로 변경, yolo version에 맞게 yolov2,yolov3넣음
+# darknet_ros/darknet_ros/config/ros.yaml에서 rostopic list에서 image->/image_raw
+# darknet_ros/darknet_ros/launch/darknet_ros에서 rostopic list에서 image ->/image_raw, yolo version :yolov2 OR yolov3 OR yolov4....
 
-# roscore 실행하기
+# roscore
 rosrun uvc_camera uvc_camera_node
-roslaunch darknet_ros darknet_ros.launch # yolov2, v2 tiny 모델일때 
-roslaunch darknet_ros yolo_v3.launch # yolov3 모델일때
-# 안될경우 source /home/###/catkin_ws/devel/setup.bash 후 재실시
+roslaunch darknet_ros darknet_ros.launch # yolov2, v2 tiny  
+roslaunch darknet_ros yolo_v3.launch # yolov3 
+# make sure to do source /home/###/catkin_ws/devel/setup.bash 
 ```
 ![Screenshot from 2022-07-13 14-26-35](https://user-images.githubusercontent.com/88171531/178666386-5acb53a7-7d59-4e19-8eeb-dc845d8df9db.png)
 ![Screenshot from 2022-07-13 16-19-20](https://user-images.githubusercontent.com/88171531/178674569-31422ff5-a134-4291-a55c-901f63630688.png)
