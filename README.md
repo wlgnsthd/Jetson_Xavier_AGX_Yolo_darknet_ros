@@ -43,7 +43,7 @@ gedit ~/.bashrc
 roscore
 # ctrl c
 ```
-## Delete OpenCV4
+## Delete OpenCV4 ( If opencv4 is installed )
 ```
 sudo apt-get purge libopencv* python-opencv
 sudo find /usr/local/ -name "*opencv*" -exec rm {} \;
