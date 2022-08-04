@@ -112,6 +112,7 @@ git clone --recursive https://github.com/Tossy0423/yolov4-for-darknet_ros.git
 cd ../
 # Open darknet_ros/darknet/Makefile : GPU,CUDNN, OPENCV = 1, gencode arch=compute_72,code=sm_72\ gencode arch=compute_72,code=[sm_72,compute_72] 
 # Make sure your GPU version checking 
+#find the find_package(OpenCV REQUIRED) and change to find_package(OpenCV 3 REQUIRED)
 # darknet_ros/darknet_ros/CMakeList.txt : Do same thing
 catkin_make -DKMAKE_BUILD_TYPE=Release
 # Build
