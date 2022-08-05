@@ -1,5 +1,5 @@
 # Jetson Xavier AGX Yolo darknet ROS (Yolov4)
-##### Nano -> https://pinkwink.kr/1322
+##### Nano -> ros : https://pinkwink.kr/1322 , opencv : https://pinkwink.kr/1325
 ```
 sudo apt-get update && sudo apt-get upgrade -y
 ```
