@@ -1,6 +1,6 @@
-# Jetson Xavier AGX Yolo darknet ROS (Yolov4)
+# Jetson Xavier _ Yolo darknet ROS (Yolov4)
 ## Install ROS -> OpenCV3 -> cv3_bridge -> darknet_ROS 
-##### Nano -> ros : https://pinkwink.kr/1322 , opencv : https://pinkwink.kr/1325
+##### ( for Nano -> ROS : https://pinkwink.kr/1322 , OpenCV : https://pinkwink.kr/1325 )
 ```
 sudo apt-get update && sudo apt-get upgrade -y
 ```
