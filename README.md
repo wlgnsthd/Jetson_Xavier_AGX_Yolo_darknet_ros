@@ -59,15 +59,16 @@ sudo find /usr/local/ -name "*opencv*" -exec rm {} \;
 # sudo rm -rf /usr/share/opencv4
 ```
 ## Install OpenCV3.4.0
-### with well known code (recommended)
+### 1) with well known code (recommended)
 ```
 $ git clone https://github.com/jetsonhacks/buildOpenCVXavier.git
 $ cd buildOpenCVXavier
 $ git checkout v1.0
 $ ./buildOpenCV.sh
 ```
-### with source code
 ___________________________
+
+### 2) with source code
 ```
 cd
 mkdir opencv
@@ -99,7 +100,8 @@ sudo ldconfig
 https://github.com/leggedrobotics/darknet_ros/issues/34
 
 ```
-# Dont do apt install ros-melodic-cv-bridge
+# Dont do apt install ros-melodic-cv-bridge 
+### (it installs opencv4 silently)
 cd catkin_ws/src
 git clone https://github.com/superjax/cv3_bridge
 #In src/darknet_ros/darknet_ros/CMakeLists.txt:
