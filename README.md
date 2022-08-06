@@ -1,4 +1,5 @@
 # Jetson Xavier AGX Yolo darknet ROS (Yolov4)
+## Install ROS -> OpenCV3 -> cv3_bridge -> darknet_ROS 
 ##### Nano -> ros : https://pinkwink.kr/1322 , opencv : https://pinkwink.kr/1325
 ```
 sudo apt-get update && sudo apt-get upgrade -y
@@ -46,6 +47,7 @@ roscore
 # ctrl c
 ```
 ## Delete OpenCV4 ( If opencv4 is installed )
+### Don't do autoremove
 ```
 sudo apt-get purge libopencv* python-opencv
 sudo find /usr/local/ -name "*opencv*" -exec rm {} \;
