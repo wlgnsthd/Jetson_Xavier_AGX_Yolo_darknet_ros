@@ -5,6 +5,7 @@ sudo apt-get update && sudo apt-get upgrade -y
 ```
 ## Check Version
 ```
+# Alternative : install jtop
 git clone https://github.com/jetsonhacks/jetsonUtilities
 cd jetsonUtilities
 python jetsonInfo.py
