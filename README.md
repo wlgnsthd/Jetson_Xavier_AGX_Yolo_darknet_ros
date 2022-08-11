@@ -120,13 +120,17 @@ cd ../
 # Make sure your GPU version checking 
 #find the find_package(OpenCV REQUIRED) and change to find_package(OpenCV 3 REQUIRED)
 # darknet_ros/darknet_ros/CMakeList.txt : Do same thing
+
+## To display detection image in rviz, modify darknet_ros/darknet_ros/src/YoloObjectDetector.cpp
+## #498 if{generate_image(buff_[(buffIndex_ + 1)%3], ipl_);// 추가한 부분  displayInThread(0);}else{}
+
 catkin_make -DKMAKE_BUILD_TYPE=Release
 # Build
 # usb camera pkg
 sudo apt install ros-melodic-uvc-camera 
 
-# darknet_ros/darknet_ros/config/ros.yaml에서 rostopic list에서 image->/image_raw
-# darknet_ros/darknet_ros/launch/darknet_ros에서 rostopic list에서 image ->/image_raw, yolo version :yolov2 OR yolov3 OR yolov4....
+# darknet_ros/darknet_ros/config/ros.yaml : rostopic list - image->/image_raw (ex)
+# darknet_ros/darknet_ros/launch/darknet_ros : rostopic list - image ->/image_raw, yolo version :yolov2 OR yolov3 OR yolov4....
 
 # roscore
 rosrun uvc_camera uvc_camera_node
